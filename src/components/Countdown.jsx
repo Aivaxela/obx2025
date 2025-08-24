@@ -4,7 +4,7 @@ function TimeUnit({ value, label }) {
   const timeClass =
     "text-6xl md:text-9xl font-bold bg-gradient-to-t from-pink-500 to-blue-400 bg-clip-text text-transparent px-2 mt-4";
   const labelClass =
-    "text-sm md:text-base font-medium bg-gradient-to-t from-pink-500 to-blue-400 bg-clip-text text-transparent px-2";
+    "text-2xl font-medium bg-gradient-to-t from-pink-500 to-blue-400 bg-clip-text text-transparent px-2";
 
   return (
     <div className="text-center">

@@ -18,7 +18,7 @@ export default function GeneralInfo() {
       {/* <GoogleMap /> */}
       <div>
         <a
-          href="https://maps.google.com/?q=35.9208629,-75.6039274"
+          href="https://maps.google.com/?q=6508 S Virginia Dare Trail, Kill Devil Hills, NC 27948"
           className="text-red-500 hover:text-red-900 font-bold text-5xl"
           target="_blank"
           rel="noopener noreferrer"
