@@ -1,10 +1,42 @@
+import GoogleMap from "./GoogleMap";
+import house from "url:../assets/house.jpg";
+import inside from "url:../assets/inside.jpg";
+import pool from "url:../assets/pool.jpg";
+import beach from "url:../assets/beach.jpg";
+
 const infoRowStyle =
   "flex justify-between items-center text-2xl border-2 gap-6 text-left border-black bg-yellow-200/50 rounded-xl p-4";
+
+const pictureStyle =
+  "w-full h-48 object-cover rounded-lg border-2 border-orange-300";
 
 export default function GeneralInfo() {
   return (
     <>
-      <h3 className="mt-16 text-4xl my-4 font-bold text-orange-500">
+      {/* GOOGLE MAPS PLACEHOLDER */}
+      <div className="w-full h-80 rounded-lg border-8 bg-green-300 overflow-hidden"></div>
+      {/* <GoogleMap /> */}
+      <a
+        href="https://maps.google.com/?q=35.9208629,-75.6039274"
+        className="text-red-500 hover:text-red-900 font-bold text-2xl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Directions
+      </a>
+      <p className="text-lg">
+        6508 South Virginia Dare Trail <br />
+        Nags Head, NC 27959
+      </p>
+      <div className="w-full mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <img src={house} alt="Property view 1" className={pictureStyle} />
+          <img src={inside} alt="Property view 2" className={pictureStyle} />
+          <img src={pool} alt="Property view 3" className={pictureStyle} />
+          <img src={beach} alt="Property view 4" className={pictureStyle} />
+        </div>
+      </div>
+      <h3 className="text-4xl my-4 font-bold text-orange-500">
         General Information
       </h3>
       <div className="flex-col flex gap-4">
