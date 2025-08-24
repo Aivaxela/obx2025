@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function TimeUnit({ value, label }) {
   const timeClass =
-    "text-6xl md:text-7xl font-bold bg-gradient-to-t from-pink-500 to-blue-400 bg-clip-text text-transparent px-2 mt-4";
+    "text-6xl md:text-9xl font-bold bg-gradient-to-t from-pink-500 to-blue-400 bg-clip-text text-transparent px-2 mt-4";
   const labelClass =
     "text-sm md:text-base font-medium bg-gradient-to-t from-pink-500 to-blue-400 bg-clip-text text-transparent px-2";
 
@@ -56,7 +56,7 @@ export default function Countdown() {
         <TimeUnit value={timeLeft.minutes} label="Minutes" />
         <TimeUnit value={timeLeft.seconds} label="Seconds" />
       </div>
-      <p className="py-2 text-red-900 text-md font-bold">
+      <p className="py-2 text-red-900 text-xl font-bold">
         September 14th, 2025
       </p>
     </div>

@@ -7,7 +7,7 @@ export default function Obx() {
     <div className="bg-orange-200 min-h-screen min-w-[320px] p-2">
       <div className="relative max-w-5xl mx-auto">
         <div className="text-center">
-          <h1 className="text-4xl my-4 font-bold text-orange-500">
+          <h1 className="text-5xl my-4 font-bold text-orange-500">
             ☀️ Outer Banks 2025 🏖️
           </h1>
           <Countdown />

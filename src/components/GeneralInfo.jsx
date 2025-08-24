@@ -5,31 +5,33 @@ import pool from "url:../assets/pool.jpg";
 import beach from "url:../assets/beach.jpg";
 
 const infoRowStyle =
-  "flex justify-between items-center text-2xl border-2 gap-6 text-left border-black bg-yellow-200/50 rounded-xl p-4";
+  "flex justify-between items-center text-3xl border-2 gap-6 text-left border-black bg-yellow-200/50 rounded-xl p-4";
 
 const pictureStyle =
-  "w-full h-48 object-cover rounded-lg border-2 border-orange-300";
+  "w-full h-96 object-cover rounded-lg border-2 border-orange-300";
 
 export default function GeneralInfo() {
   return (
-    <>
+    <div className="flex flex-col gap-5">
       {/* GOOGLE MAPS PLACEHOLDER */}
       <div className="w-full h-80 rounded-lg border-8 bg-green-300 overflow-hidden"></div>
       {/* <GoogleMap /> */}
-      <a
-        href="https://maps.google.com/?q=35.9208629,-75.6039274"
-        className="text-red-500 hover:text-red-900 font-bold text-2xl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Directions
-      </a>
-      <p className="text-lg">
-        6508 South Virginia Dare Trail <br />
-        Nags Head, NC 27959
-      </p>
+      <div>
+        <a
+          href="https://maps.google.com/?q=35.9208629,-75.6039274"
+          className="text-red-500 hover:text-red-900 font-bold text-5xl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Click here for directions
+        </a>
+        <p className="text-xl">
+          6508 South Virginia Dare Trail <br />
+          Nags Head, NC 27959
+        </p>
+      </div>
       <div className="w-full mb-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
           <img src={house} alt="Property view 1" className={pictureStyle} />
           <img src={inside} alt="Property view 2" className={pictureStyle} />
           <img src={pool} alt="Property view 3" className={pictureStyle} />
@@ -37,7 +39,7 @@ export default function GeneralInfo() {
         </div>
       </div>
       <h3 className="text-4xl my-4 font-bold text-orange-500">
-        General Information
+        📝 General Information 📝
       </h3>
       <div className="flex-col flex gap-4">
         <div className={infoRowStyle}>
@@ -104,6 +106,6 @@ export default function GeneralInfo() {
           <span className="font-semibold">252-202-8671</span>
         </div>
       </div>
-    </>
+    </div>
   );
 }

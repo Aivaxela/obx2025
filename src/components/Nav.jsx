@@ -3,6 +3,9 @@ import GeneralInfo from "./GeneralInfo";
 import ShoppingList from "./ShoppingList";
 import Pics from "./Pics";
 
+const navButtonStyling =
+  "px-8 py-8 rounded-full text-5xl font-semibold transition-colors duration-200";
+
 export default function Nav() {
   const [selectedTab, setSelectedTab] = useState("info");
 
@@ -24,7 +27,7 @@ export default function Nav() {
       <div className="flex justify-center gap-8 m-5">
         <button
           onClick={() => setSelectedTab("info")}
-          className={`px-6 py-3 rounded-full text-3xl font-semibold transition-colors duration-200 ${
+          className={`${navButtonStyling} ${
             selectedTab === "info"
               ? "bg-red-600 text-white"
               : "bg-orange-300 text-black hover:bg-orange-400"
@@ -34,7 +37,7 @@ export default function Nav() {
         </button>
         <button
           onClick={() => setSelectedTab("shopping")}
-          className={`px-6 py-3 rounded-full text-3xl font-semibold transition-colors duration-200 ${
+          className={`${navButtonStyling} ${
             selectedTab === "shopping"
               ? "bg-red-600 text-white"
               : "bg-orange-300 text-black hover:bg-orange-400"
@@ -44,7 +47,7 @@ export default function Nav() {
         </button>
         <button
           onClick={() => setSelectedTab("pics")}
-          className={`px-6 py-3 rounded-full text-3xl font-semibold transition-colors duration-200 ${
+          className={`${navButtonStyling} ${
             selectedTab === "pics"
               ? "bg-red-600 text-white"
               : "bg-orange-300 text-black hover:bg-orange-400"
