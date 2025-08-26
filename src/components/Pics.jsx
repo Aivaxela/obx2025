@@ -86,8 +86,8 @@ export default function Pics() {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      alert("Image size must be less than 5MB");
+    if (file.size > 30 * 1024 * 1024) {
+      alert("Image size must be less than 30MB");
       return;
     }
 
@@ -136,9 +136,6 @@ export default function Pics() {
       <h3 className="text-4xl my-4 font-bold text-orange-500">Photos</h3>
       <div className="flex-col flex gap-4 px-4">
         <div className="text-center border-2 border-black bg-yellow-200/50 rounded-xl p-6">
-          <p className="font-semibold text-3xl mb-4">
-            Share your vacation memories!
-          </p>
           <div className="flex flex-col items-center justify-center gap-4">
             <input
               type="file"
@@ -162,7 +159,7 @@ export default function Pics() {
               <span className="text-3xl text-orange-600">Please wait...</span>
             )}
           </div>
-          <p className="text-3xl text-gray-600 mt-2">Max file size: 5MB</p>
+          <p className="text-xl text-gray-600 mt-2">Max file size: 30MB</p>
         </div>
 
         {pictures.length === 0 ? (
