@@ -6,13 +6,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
-import { db, storage } from "../firebase";
+import { db } from "../firebase";
 
 export default function Pics() {
   const [pictures, setPictures] = useState([]);
@@ -86,24 +80,41 @@ export default function Pics() {
       return;
     }
 
-    if (file.size > 30 * 1024 * 1024) {
-      alert("Image size must be less than 30MB");
+    if (file.size > 10 * 1024 * 1024) {
+      alert("Image size must be less than 10MB (Imgur limit)");
       return;
     }
 
     setUploading(true);
     try {
-      const storageRef = ref(storage, `pictures/${Date.now()}_${file.name}`);
+      // Create FormData for Imgur API
+      const formData = new FormData();
+      formData.append("image", file);
 
-      const snapshot = await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
+      // Upload to Imgur
+      const response = await fetch("https://api.imgur.com/3/image", {
+        method: "POST",
+        headers: {
+          Authorization: "Client-ID YOUR_IMGUR_CLIENT_ID_HERE",
+        },
+        body: formData,
+      });
 
+      if (!response.ok) {
+        throw new Error("Imgur upload failed");
+      }
+
+      const result = await response.json();
+      const imgurUrl = result.data.link;
+
+      // Save to Firestore
       await addDoc(collection(db, "pictures"), {
-        url: downloadURL,
+        url: imgurUrl,
         fileName: file.name,
         uploadedBy: userName || "Anonymous",
         uploadedAt: new Date().toLocaleString(),
-        storageRef: storageRef.fullPath,
+        imgurId: result.data.id,
+        deleteHash: result.data.deletehash,
       });
 
       alert("Image uploaded successfully!");
@@ -118,10 +129,22 @@ export default function Pics() {
   const deletePicture = async (picture) => {
     if (window.confirm("Are you sure you want to delete this image?")) {
       try {
+        // Delete from Firestore
         await deleteDoc(doc(db, "pictures", picture.id));
 
-        const storageRef = ref(storage, picture.storageRef);
-        await deleteObject(storageRef);
+        // Delete from Imgur if we have the delete hash
+        if (picture.deleteHash) {
+          try {
+            await fetch(`https://api.imgur.com/3/image/${picture.deleteHash}`, {
+              method: "DELETE",
+              headers: {
+                Authorization: "Client-ID YOUR_IMGUR_CLIENT_ID_HERE",
+              },
+            });
+          } catch (imgurError) {
+            console.log("Imgur deletion failed, but image removed from app");
+          }
+        }
 
         alert("Image deleted successfully!");
       } catch (error) {
@@ -133,7 +156,7 @@ export default function Pics() {
 
   return (
     <>
-      <h3 className="text-4xl my-4 font-bold text-orange-500">Photos</h3>
+      <h3 className="text-4xl my-4 font-bold text-orange-500">📸 Photos 🖼️</h3>
       <div className="flex-col flex gap-4 px-4">
         <div className="text-center border-2 border-black bg-yellow-200/50 rounded-xl p-6">
           <div className="flex flex-col items-center justify-center gap-4">
@@ -159,7 +182,9 @@ export default function Pics() {
               <span className="text-3xl text-orange-600">Please wait...</span>
             )}
           </div>
-          <p className="text-xl text-gray-600 mt-2">Max file size: 30MB</p>
+          <p className="text-xl text-gray-600 mt-2">
+            Max file size: 10MB (Imgur limit)
+          </p>
         </div>
 
         {pictures.length === 0 ? (
