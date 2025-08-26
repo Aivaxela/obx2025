@@ -14,7 +14,7 @@ export default function GeneralInfo() {
   return (
     <div className="flex flex-col gap-5">
       {/* GOOGLE MAPS PLACEHOLDER */}
-      <div className="w-full h-80 rounded-lg border-8 bg-green-300 overflow-hidden"></div>
+      <div className="w-full h-96 bg-green-300 overflow-hidden"></div>
       {/* <GoogleMap /> */}
       <div>
         <a
@@ -30,7 +30,7 @@ export default function GeneralInfo() {
           Nags Head, NC 27959
         </p>
       </div>
-      <div className="w-full mb-6">
+      <div className="w-full mb-6 px-4">
         <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
           <img src={house} alt="Property view 1" className={pictureStyle} />
           <img src={inside} alt="Property view 2" className={pictureStyle} />
@@ -41,19 +41,7 @@ export default function GeneralInfo() {
       <h3 className="text-4xl my-4 font-bold text-orange-500">
         📝 General Information 📝
       </h3>
-      <div className="flex-col flex gap-4">
-        <div className={infoRowStyle}>
-          <span>Bedrooms:</span>
-          <span className="font-semibold">5</span>
-        </div>
-        <div className={infoRowStyle}>
-          <span>Bathrooms:</span>
-          <span className="font-semibold">5 Full</span>
-        </div>
-        <div className={infoRowStyle}>
-          <span>Occupancy:</span>
-          <span className="font-semibold">10 People</span>
-        </div>
+      <div className="flex-col flex gap-4 px-4 pb-10">
         <div className={infoRowStyle}>
           <span>WiFi Name:</span>
           <span className="font-semibold">NH13 or Off Course</span>
@@ -61,6 +49,24 @@ export default function GeneralInfo() {
         <div className={infoRowStyle}>
           <span>WiFi PW:</span>
           <span className="font-semibold">2524801891</span>
+        </div>
+
+        <div className={infoRowStyle}>
+          <span>Office Hours:</span>
+          <span className="font-semibold">9:00a - 5:00p, Mon-Sun</span>
+        </div>
+        <div className={infoRowStyle}>
+          <span>Main #:</span>
+          <span className="font-semibold">
+            252-449-4074 <br></br>
+            Housekeeping - ext 1 <br></br>
+            Maintenance - ext 2<br></br>
+            Pool and spa - ext 3
+          </span>
+        </div>
+        <div className={infoRowStyle}>
+          <span>Emergency #:</span>
+          <span className="font-semibold">252-202-8671</span>
         </div>
         <div className={infoRowStyle}>
           <span>Security Code:</span>
@@ -87,23 +93,6 @@ export default function GeneralInfo() {
             You may reply to the text you received from Village Realty using the
             words "check out". <br></br>
           </span>
-        </div>
-        <div className={infoRowStyle}>
-          <span>Office Hours:</span>
-          <span className="font-semibold">9:00a - 5:00p, Mon-Sun</span>
-        </div>
-        <div className={infoRowStyle}>
-          <span>Main #:</span>
-          <span className="font-semibold">
-            252-449-4074 <br></br>
-            Housekeeping - ext 1 <br></br>
-            Maintenance - ext 2<br></br>
-            Pool and spa - ext 3
-          </span>
-        </div>
-        <div className={infoRowStyle}>
-          <span>Emergency #:</span>
-          <span className="font-semibold">252-202-8671</span>
         </div>
       </div>
     </div>

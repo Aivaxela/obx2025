@@ -3,10 +3,9 @@ import Obx from "./Obx";
 
 export function App() {
   return (
-    <Router>
+    <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
       <Routes>
-        <Route path="/obx" element={<Obx />} />
-        <Route path="/" element={<h1>Hello!</h1>} />
+        <Route path="/" element={<Obx />} />
       </Routes>
     </Router>
   );

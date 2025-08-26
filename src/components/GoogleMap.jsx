@@ -19,7 +19,7 @@ const CustomMarker = () => {
 export default function GoogleMap() {
   return (
     <APIProvider apiKey={process.env.GOOGLE_MAPS_API_KEY}>
-      <div className="w-full h-72 rounded-lg border-8 overflow-hidden">
+      <div className="w-full h-96 overflow-hidden">
         <Map
           defaultZoom={8}
           defaultCenter={{ lat: 35.9208629, lng: -75.6039274 }}
