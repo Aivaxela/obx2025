@@ -12,9 +12,7 @@ const pictureStyle = "w-full h-96 object-cover";
 export default function GeneralInfo() {
   return (
     <div className="flex flex-col gap-5">
-      {/* GOOGLE MAPS PLACEHOLDER */}
-      <div className="w-full h-96 bg-green-300 overflow-hidden"></div>
-      {/* <GoogleMap /> */}
+      <GoogleMap />
       <div>
         <a
           href="https://maps.google.com/?q=6508 S Virginia Dare Trail, Kill Devil Hills, NC 27948"

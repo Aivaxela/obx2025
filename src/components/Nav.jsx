@@ -2,6 +2,7 @@ import { useState } from "react";
 import GeneralInfo from "./GeneralInfo";
 import ShoppingList from "./ShoppingList";
 import Pics from "./Pics";
+import Expenses from "./Expenses";
 
 export default function Nav() {
   const [selectedTab, setSelectedTab] = useState("info");
@@ -14,6 +15,8 @@ export default function Nav() {
         return <ShoppingList />;
       case "pics":
         return <Pics />;
+      case "expenses":
+        return <Expenses />;
       default:
         return <GeneralInfo />;
     }
@@ -21,36 +24,46 @@ export default function Nav() {
 
   return (
     <div>
-      <div className="flex m-5 h-24 bg-orange-300 rounded-2xl overflow-hidden">
+      <div className="grid grid-cols-2 m-5 gap-2">
         <button
           onClick={() => setSelectedTab("info")}
-          className={`flex-1 transition-all duration-300 ease-in-out text-4xl font-semibold ${
+          className={`h-24 transition-all duration-300 ease-in-out text-4xl font-semibold rounded-2xl ${
             selectedTab === "info"
-              ? "bg-red-600 text-white flex-[4]"
-              : "bg-orange-300 text-black hover:bg-orange-400 flex-[3]"
+              ? "bg-red-600 text-white"
+              : "bg-orange-300 text-black hover:bg-orange-400"
           }`}
         >
           Info
         </button>
         <button
+          onClick={() => setSelectedTab("pics")}
+          className={`h-24 transition-all duration-300 ease-in-out text-4xl font-semibold rounded-2xl ${
+            selectedTab === "pics"
+              ? "bg-red-600 text-white"
+              : "bg-orange-300 text-black hover:bg-orange-400"
+          }`}
+        >
+          Pics
+        </button>
+        <button
           onClick={() => setSelectedTab("shopping")}
-          className={`flex-1 transition-all duration-300 ease-in-out text-4xl font-semibold ${
+          className={`h-24 transition-all duration-300 ease-in-out text-4xl font-semibold rounded-2xl ${
             selectedTab === "shopping"
-              ? "bg-red-600 text-white flex-[4]"
-              : "bg-orange-300 text-black hover:bg-orange-400 flex-[3]"
+              ? "bg-red-600 text-white"
+              : "bg-orange-300 text-black hover:bg-orange-400"
           }`}
         >
           Shopping List
         </button>
         <button
-          onClick={() => setSelectedTab("pics")}
-          className={`flex-1 transition-all duration-300 ease-in-out text-4xl font-semibold ${
-            selectedTab === "pics"
-              ? "bg-red-600 text-white flex-[4]"
-              : "bg-orange-300 text-black hover:bg-orange-400 flex-[3]"
+          onClick={() => setSelectedTab("expenses")}
+          className={`h-24 transition-all duration-300 ease-in-out text-4xl font-semibold rounded-2xl ${
+            selectedTab === "expenses"
+              ? "bg-red-600 text-white"
+              : "bg-orange-300 text-black hover:bg-orange-400"
           }`}
         >
-          Pics
+          Expenses
         </button>
       </div>
       {renderContent()}

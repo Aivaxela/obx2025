@@ -14,6 +14,8 @@ export default function Pics() {
   const [userName, setUserName] = useState("");
   const [showNameInput, setShowNameInput] = useState(false);
   const [selectedPicture, setSelectedPicture] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [pictureToDelete, setPictureToDelete] = useState(null);
 
   useEffect(() => {
     const storedName = localStorage.getItem("obxUserName");
@@ -40,37 +42,6 @@ export default function Pics() {
       setShowNameInput(false);
     }
   };
-
-  if (showNameInput) {
-    return (
-      <div className="max-w-2xl mx-auto p-6">
-        <h3 className="text-4xl my-4 font-bold text-orange-600 text-center">
-          Join
-        </h3>
-        <div className="bg-yellow-200/50 rounded-xl p-6 border-2 border-black">
-          <p className="text-3xl mb-4 text-center">
-            Please enter your name to add pics:
-          </p>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder="Your name"
-              className="flex-1 px-4 py-2 text-3xl border-2 border-black rounded-lg"
-              onKeyDown={(e) => e.key === "Enter" && handleNameSubmit()}
-            />
-            <button
-              onClick={handleNameSubmit}
-              className="px-8 py-8 bg-orange-500 text-white text-3xl font-semibold rounded-lg hover:bg-orange-600 transition-colors"
-            >
-              Start
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -123,10 +94,15 @@ export default function Pics() {
   };
 
   const deletePicture = async (picture) => {
-    if (window.confirm("Are you sure you want to delete this image?")) {
+    setPictureToDelete(picture);
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDelete = async () => {
+    if (pictureToDelete) {
       try {
-        await deleteDoc(doc(db, "pictures", picture.id));
-        if (selectedPicture && selectedPicture.id === picture.id) {
+        await deleteDoc(doc(db, "pictures", pictureToDelete.id));
+        if (selectedPicture && selectedPicture.id === pictureToDelete.id) {
           setSelectedPicture(null);
         }
       } catch (error) {
@@ -134,6 +110,13 @@ export default function Pics() {
         alert("Failed to delete image. Please try again.");
       }
     }
+    setShowDeleteConfirm(false);
+    setPictureToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteConfirm(false);
+    setPictureToDelete(null);
   };
 
   const openModal = (picture) => {
@@ -160,6 +143,37 @@ export default function Pics() {
       currentIndex === 0 ? pictures.length - 1 : currentIndex - 1;
     setSelectedPicture(pictures[previousIndex]);
   };
+
+  if (showNameInput) {
+    return (
+      <div className="max-w-2xl mx-auto p-6">
+        <h3 className="text-4xl my-4 font-bold text-orange-600 text-center">
+          Join
+        </h3>
+        <div className="bg-yellow-200/50 rounded-xl p-6 border-2 border-black">
+          <p className="text-3xl mb-4 text-center">
+            Please enter your name to add pics:
+          </p>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder="Your name"
+              className="flex-1 px-4 py-2 text-3xl border-2 border-black rounded-lg"
+              onKeyDown={(e) => e.key === "Enter" && handleNameSubmit()}
+            />
+            <button
+              onClick={handleNameSubmit}
+              className="px-8 py-8 bg-orange-500 text-white text-3xl font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              Start
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -255,13 +269,41 @@ export default function Pics() {
             <div className="flex justify-between items-center w-full mt-4 px-4">
               <button
                 onClick={() => deletePicture(selectedPicture)}
-                className="text-red-500 text-2xl cursor-pointer"
+                className="text-red-500 text-2xl cursor-pointer hover:text-red-700 transition-colors"
               >
                 Delete
               </button>
               <span className="text-white text-2xl font-semibold">
                 {selectedPicture.uploadedBy}
               </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-8 max-w-md mx-4">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+              Delete Photo?
+            </h3>
+            <p className="text-xl text-gray-600 mb-8 text-center">
+              Are you sure you want to delete this photo? This action cannot be
+              undone.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <button
+                onClick={cancelDelete}
+                className="px-8 py-4 bg-gray-500 text-white text-2xl font-semibold rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-8 py-4 bg-red-500 text-white text-2xl font-semibold rounded-lg hover:bg-red-600 transition-colors"
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
