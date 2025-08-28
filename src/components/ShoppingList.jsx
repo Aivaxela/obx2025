@@ -118,27 +118,22 @@ export default function ShoppingList() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h3 className="text-4xl font-bold text-orange-500 text-center mb-6">
-        🍔 Shopping List 🥕
-      </h3>
-      <div className="bg-yellow-200/50 rounded-xl p-4 border-2 border-black mb-6">
-        <div className="flex gap-2 mb-2">
-          <input
-            type="text"
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-            placeholder="Add new item..."
-            className="flex-1 px-8 py-8 text-3xl border-2 border-black rounded-lg"
-            onKeyDown={(e) => e.key === "Enter" && addItem()}
-          />
-          <button
-            onClick={addItem}
-            className="px-8 py-8 bg-green-500 text-white text-3xl font-semibold rounded-lg hover:bg-green-600 transition-colors"
-          >
-            Add
-          </button>
-        </div>
+    <div className="mx-auto py-4">
+      <div className="flex mb-10">
+        <input
+          type="text"
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
+          placeholder="Add new item..."
+          className="flex-1 px-8 py-8 w-10/12 text-3xl"
+          onKeyDown={(e) => e.key === "Enter" && addItem()}
+        />
+        <button
+          onClick={addItem}
+          className="px-8 py-8 bg-green-500 w-2/12 text-white text-3xl font-semibold hover:bg-green-600 transition-colors"
+        >
+          Add
+        </button>
       </div>
 
       {items.length === 0 ? (
@@ -147,14 +142,12 @@ export default function ShoppingList() {
         </div>
       ) : (
         <div className="space-y-2">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <div
               key={item.id}
-              className={`flex items-center justify-between p-4 border-2 border-black rounded-xl transition-all text-3xl ${
-                item.completed
-                  ? "bg-green-200/50 line-through opacity-75 text-3xl"
-                  : "bg-yellow-200/50 text-3xl "
-              }`}
+              className={`flex justify-between items-center text-3xl w-full gap-6 text-left p-4 ${
+                index % 2 === 0 ? "bg-yellow-400/50" : "bg-yellow-100/50"
+              } ${item.completed ? "line-through opacity-75" : ""}`}
             >
               <div className="flex items-center gap-3">
                 <input

@@ -5,10 +5,9 @@ import pool from "url:../assets/pool.jpg";
 import beach from "url:../assets/beach.jpg";
 
 const infoRowStyle =
-  "flex justify-between items-center text-3xl border-2 gap-6 text-left border-black bg-yellow-200/50 rounded-xl p-4";
+  "flex justify-between items-center text-3xl w-full gap-6 text-left bg-yellow-400/50 p-4 even:bg-yellow-100/50";
 
-const pictureStyle =
-  "w-full h-96 object-cover rounded-lg border-2 border-orange-300";
+const pictureStyle = "w-full h-96 object-cover";
 
 export default function GeneralInfo() {
   return (
@@ -30,8 +29,8 @@ export default function GeneralInfo() {
           Nags Head, NC 27959
         </p>
       </div>
-      <div className="w-full mb-6 px-4">
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+      <div className="w-full mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-2">
           <img src={house} alt="Property view 1" className={pictureStyle} />
           <img src={inside} alt="Property view 2" className={pictureStyle} />
           <img src={pool} alt="Property view 3" className={pictureStyle} />
@@ -39,9 +38,9 @@ export default function GeneralInfo() {
         </div>
       </div>
       <h3 className="text-4xl my-4 font-bold text-orange-500">
-        📝 General Information 📝
+        - General Information -
       </h3>
-      <div className="flex-col flex gap-4 px-4 pb-10">
+      <div className="flex-col flex pb-10">
         <div className={infoRowStyle}>
           <span>WiFi Name:</span>
           <span className="font-semibold">NH13 or Off Course</span>
