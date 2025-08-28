@@ -21,7 +21,7 @@ export default function GoogleMap() {
     <APIProvider apiKey={process.env.GOOGLE_MAPS_API_KEY}>
       <div className="w-full h-[600px] overflow-hidden">
         <Map
-          defaultZoom={8}
+          defaultZoom={14}
           defaultCenter={{ lat: 35.9208629, lng: -75.6039274 }}
           mapId={process.env.GOOGLE_MAPS_MAP_ID}
         >
