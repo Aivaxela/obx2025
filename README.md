@@ -1,9 +1,9 @@
-# budgeting-app
+# obx2025
 
-A very simple and quick budgeting app made with React
+A webapp created to host information for our OBX 2025 vacation
 
 Packaged with Parcel
 
 Styled with Tailwind
 
-Deployed with Github Pages
+Deployed on Firebase
