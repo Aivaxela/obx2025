@@ -40,6 +40,10 @@ export default function GeneralInfo() {
       </h3>
       <div className="flex-col flex pb-10">
         <div className={infoRowStyle}>
+          <span>Security Code:</span>
+          <span className="font-semibold">873750</span>
+        </div>
+        <div className={infoRowStyle}>
           <span>WiFi Name:</span>
           <span className="font-semibold">NH13 or Off Course</span>
         </div>
@@ -47,7 +51,6 @@ export default function GeneralInfo() {
           <span>WiFi PW:</span>
           <span className="font-semibold">2524801891</span>
         </div>
-
         <div className={infoRowStyle}>
           <span>Office Hours:</span>
           <span className="font-semibold">9:00a - 5:00p, Mon-Sun</span>
@@ -64,10 +67,6 @@ export default function GeneralInfo() {
         <div className={infoRowStyle}>
           <span>Emergency #:</span>
           <span className="font-semibold">252-202-8671</span>
-        </div>
-        <div className={infoRowStyle}>
-          <span>Security Code:</span>
-          <span className="font-semibold">Given 5 days before check-in</span>
         </div>
         <div className={infoRowStyle}>
           <span>Security Code Instructions:</span>
