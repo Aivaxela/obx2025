@@ -248,7 +248,7 @@ export default function Pics() {
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
-          <div className="flex flex-col items-center relative w-full h-full">
+          <div className="relative flex items-center justify-center w-full h-full">
             <button
               onClick={(e) => {
                 e.stopPropagation();

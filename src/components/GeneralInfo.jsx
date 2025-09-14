@@ -41,7 +41,7 @@ export default function GeneralInfo() {
       <div className="flex-col flex pb-10">
         <div className={infoRowStyle}>
           <span>Security Code:</span>
-          <span className="font-semibold">873750</span>
+          <span className="font-semibold">873570 then press the checkmark</span>
         </div>
         <div className={infoRowStyle}>
           <span>WiFi Name:</span>
