@@ -212,7 +212,7 @@ export default function Pics() {
             {pictures.map((picture) => (
               <div
                 key={picture.id}
-                className="relative bg-white overflow-hidden cursor-pointer"
+                className="relative bg-white overflow-hidden cursor-pointer group"
                 onClick={() => openModal(picture)}
               >
                 <img
@@ -226,6 +226,17 @@ export default function Pics() {
                     {picture.uploadedBy}
                   </p>
                 </div>
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deletePicture(picture);
+                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-lg font-semibold transition-colors drop-shadow-lg"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -237,13 +248,13 @@ export default function Pics() {
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
-          <div className="flex flex-col items-center relative">
+          <div className="flex flex-col items-center relative w-full h-full">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 goToPrevious();
               }}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-8xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100"
               title="Previous image"
             >
               ‹
@@ -254,7 +265,7 @@ export default function Pics() {
                 e.stopPropagation();
                 goToNext();
               }}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-8xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100"
               title="Next image"
             >
               ›
@@ -263,17 +274,20 @@ export default function Pics() {
             <img
               src={selectedPicture.url}
               alt={selectedPicture.fileName}
-              className="max-w-full max-h-full object-contain"
-              onClick={(e) => e.stopPropagation()}
+              className="max-w-full max-h-full object-contain cursor-pointer"
+              onClick={closeModal}
             />
-            <div className="flex justify-between items-center w-full mt-4 px-4">
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
               <button
-                onClick={() => deletePicture(selectedPicture)}
-                className="text-red-500 text-2xl cursor-pointer hover:text-red-700 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deletePicture(selectedPicture);
+                }}
+                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-2xl font-semibold transition-colors drop-shadow-lg"
               >
                 Delete
               </button>
-              <span className="text-white text-2xl font-semibold">
+              <span className="text-white text-2xl font-semibold drop-shadow-lg">
                 {selectedPicture.uploadedBy}
               </span>
             </div>
