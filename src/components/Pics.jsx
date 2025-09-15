@@ -30,6 +30,9 @@ export default function Pics() {
       snapshot.forEach((doc) => {
         picturesList.push({ id: doc.id, ...doc.data() });
       });
+      picturesList.sort(
+        (a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt)
+      );
       setPictures(picturesList);
     });
 
@@ -254,7 +257,7 @@ export default function Pics() {
                 e.stopPropagation();
                 goToPrevious();
               }}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-8xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-8xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100 px-8 py-16 rounded-lg hover:bg-white hover:bg-opacity-10"
               title="Previous image"
             >
               ‹
@@ -265,7 +268,7 @@ export default function Pics() {
                 e.stopPropagation();
                 goToNext();
               }}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-8xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-8xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-10 opacity-60 hover:opacity-100 px-8 py-16 rounded-lg hover:bg-white hover:bg-opacity-10"
               title="Next image"
             >
               ›
